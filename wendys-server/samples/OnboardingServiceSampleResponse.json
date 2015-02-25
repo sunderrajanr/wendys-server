@@ -1,0 +1,358 @@
+/**
+ * Sample Response from Onboarding Service
+ *
+ * Created by prrathore on 10/24/14.
+ */
+
+{
+    "dimension": {
+    "country": "US",
+        "customer_type": "CONSUMER",
+        "business_channel": "ANY",
+        "technical_channel": "WEB",
+        "partner_channel": null,
+        "experience_channel": "ANY",
+        "intents": [
+        "CREATE_ACCOUNT",
+        "LINK_BANK_ACCOUNT",
+        "LINK_CREDIT_CARD"
+    ]
+},
+    "actions": [],
+    "client_opaque_state": "",
+    "output_data": {
+    "data": {}
+},
+    "document_processing_status": "DATA_COLLECTION_PENDING",
+    "customer_id_type": null,
+    "customer_id": null,
+    "status": "IN_PROGRESS",
+    "id": "18f765a4324054a50919cdd8484feefd5141418994502268LZL2F3ITXA2I0YVO",
+    "errors": [],
+    "links": [
+    {
+        "rel": "self",
+        "href": "applications/18f765a4324054a50919cdd8484feefd5141418994502268LZL2F3ITXA2I0YVO/"
+    }
+],
+    "documents": [
+    {
+        "id": "2165536f6fb9d4cfe9babab590815aa931414189945026B9WSDTGNPCZ2LA3SFT",
+        "name": "DocumentConsumerCreateAccountFormI",
+        "dimension": {
+            "country": "US",
+            "customer_type": "CONSUMER",
+            "business_channel": "ANY",
+            "technical_channel": "WEB",
+            "partner_channel": null,
+            "experience_channel": "ANY",
+            "intents": [
+                "CREATE_ACCOUNT"
+            ],
+            "capability": "CREATE_ACCOUNT"
+        },
+        "content": {
+            "country_of_account": {
+                "country": "US"
+            },
+            "personal_preferences": {
+                "language": "en_US"
+            },
+            "credentials": {
+                "email": "sshanmugam-US-0926-10@paypal.com",
+                "password": ""
+            },
+            "personal_information_name": {
+                "first": "Saravanan",
+                "middle": "K",
+                "last": "Shanmugam"
+            },
+            "personal_information_location": {
+                "line1": "3000 Aurora Ter",
+                "line2": "M300",
+                "city": "Fremont",
+                "county": "CA",
+                "post_code": "94536",
+                "country": "US"
+            },
+            "personal_information_contact": {
+                "country_code": "00",
+                "phone_number": "4082451112",
+                "extn": "",
+                "tag": "MOBILE"
+            },
+            "personal_information_identification": {
+                "date_of_birth": "19800101",
+                "country_of_citizenship": "US",
+                "tax_identifier": "619634287"
+            },
+            "password_recovery": {
+                "security_question_1": "What was the name of your first school?",
+                "security_question_2": "PayPal",
+                "security_answer_1": "What was the name of your first pet",
+                "security_answer_2": "eBay"
+            },
+            "legal_consent": {
+                "credit_header_consent_flag": false,
+                "market_email_opt_out_flag": false,
+                "legal_agreement_flag": false,
+                "major_version": "3",
+                "minor_version": "2",
+                "agreement_type": "C"
+            }
+        },
+        "status": "IGNORED",
+        "errors": [],
+        "links": [
+            {
+                "rel": "self",
+                "href": "applications/18f765a4324054a50919cdd8484feefd5141418994502268LZL2F3ITXA2I0YVO/documents/2165536f6fb9d4cfe9babab590815aa931414189945026B9WSDTGNPCZ2LA3SFT"
+            },
+            {
+                "rel": "up",
+                "href": "applications/18f765a4324054a50919cdd8484feefd5141418994502268LZL2F3ITXA2I0YVO"
+            },
+            {
+                "rel": "describedby",
+                "href": "applications/18f765a4324054a50919cdd8484feefd5141418994502268LZL2F3ITXA2I0YVO/documents/2165536f6fb9d4cfe9babab590815aa931414189945026B9WSDTGNPCZ2LA3SFT/schema"
+            }
+        ],
+        "section_meta_data": [
+            {
+                "id": {
+                    "uid": "#/legal_consent"
+                },
+                "restrictions": {
+                    "wont_edit": [],
+                    "wont_reveal_value": [],
+                    "partially_masked_last4_only": [],
+                    "do_not_persist": [],
+                    "mandatory": [
+                        "major_version",
+                        "agreement_type",
+                        "legal_agreement_flag",
+                        "minor_version"
+                    ],
+                    "not_applicable": [],
+                    "immutable": []
+                },
+                "value_sources": {
+                    "client": [],
+                    "system_generated": [],
+                    "committed": [],
+                    "unset_default": []
+                },
+                "status": "IGNORED",
+                "messages": {},
+                "errors": []
+            },
+            {
+                "id": {
+                    "uid": "#/personal_information_name"
+                },
+                "restrictions": {
+                    "wont_edit": [],
+                    "wont_reveal_value": [],
+                    "partially_masked_last4_only": [],
+                    "do_not_persist": [],
+                    "mandatory": [
+                        "last",
+                        "first"
+                    ],
+                    "not_applicable": [],
+                    "immutable": []
+                },
+                "value_sources": {
+                    "client": [],
+                    "system_generated": [],
+                    "committed": [],
+                    "unset_default": []
+                },
+                "status": "IGNORED",
+                "messages": {},
+                "errors": []
+            },
+            {
+                "id": {
+                    "uid": "#/personal_information_contact"
+                },
+                "restrictions": {
+                    "wont_edit": [],
+                    "wont_reveal_value": [],
+                    "partially_masked_last4_only": [],
+                    "do_not_persist": [],
+                    "mandatory": [
+                        "phone_number",
+                        "tag",
+                        "country_code"
+                    ],
+                    "not_applicable": [],
+                    "immutable": []
+                },
+                "value_sources": {
+                    "client": [],
+                    "system_generated": [],
+                    "committed": [],
+                    "unset_default": []
+                },
+                "status": "IGNORED",
+                "messages": {},
+                "errors": []
+            },
+            {
+                "id": {
+                    "uid": "#/password_recovery"
+                },
+                "restrictions": {
+                    "wont_edit": [],
+                    "wont_reveal_value": [],
+                    "partially_masked_last4_only": [],
+                    "do_not_persist": [],
+                    "mandatory": [],
+                    "not_applicable": [],
+                    "immutable": []
+                },
+                "value_sources": {
+                    "client": [],
+                    "system_generated": [],
+                    "committed": [],
+                    "unset_default": []
+                },
+                "status": "IGNORED",
+                "messages": {},
+                "errors": []
+            },
+            {
+                "id": {
+                    "uid": "#/country_of_account"
+                },
+                "restrictions": {
+                    "wont_edit": [],
+                    "wont_reveal_value": [],
+                    "partially_masked_last4_only": [],
+                    "do_not_persist": [],
+                    "mandatory": [
+                        "country"
+                    ],
+                    "not_applicable": [],
+                    "immutable": []
+                },
+                "value_sources": {
+                    "client": [],
+                    "system_generated": [],
+                    "committed": [],
+                    "unset_default": []
+                },
+                "status": "IGNORED",
+                "messages": {},
+                "errors": []
+            },
+            {
+                "id": {
+                    "uid": "#/personal_preferences"
+                },
+                "restrictions": {
+                    "wont_edit": [],
+                    "wont_reveal_value": [],
+                    "partially_masked_last4_only": [],
+                    "do_not_persist": [],
+                    "mandatory": [
+                        "language"
+                    ],
+                    "not_applicable": [],
+                    "immutable": []
+                },
+                "value_sources": {
+                    "client": [],
+                    "system_generated": [],
+                    "committed": [],
+                    "unset_default": []
+                },
+                "status": "IGNORED",
+                "messages": {},
+                "errors": []
+            },
+            {
+                "id": {
+                    "uid": "#/personal_information_identification"
+                },
+                "restrictions": {
+                    "wont_edit": [],
+                    "wont_reveal_value": [],
+                    "partially_masked_last4_only": [],
+                    "do_not_persist": [],
+                    "mandatory": [],
+                    "not_applicable": [],
+                    "immutable": []
+                },
+                "value_sources": {
+                    "client": [],
+                    "system_generated": [],
+                    "committed": [],
+                    "unset_default": []
+                },
+                "status": "IGNORED",
+                "messages": {},
+                "errors": []
+            },
+            {
+                "id": {
+                    "uid": "#/credentials"
+                },
+                "restrictions": {
+                    "wont_edit": [],
+                    "wont_reveal_value": [],
+                    "partially_masked_last4_only": [],
+                    "do_not_persist": [
+                        "password"
+                    ],
+                    "mandatory": [
+                        "password",
+                        "email"
+                    ],
+                    "not_applicable": [],
+                    "immutable": [
+                        "email"
+                    ]
+                },
+                "value_sources": {
+                    "client": [],
+                    "system_generated": [],
+                    "committed": [],
+                    "unset_default": []
+                },
+                "status": "IGNORED",
+                "messages": {},
+                "errors": []
+            },
+            {
+                "id": {
+                    "uid": "#/personal_information_location"
+                },
+                "restrictions": {
+                    "wont_edit": [],
+                    "wont_reveal_value": [],
+                    "partially_masked_last4_only": [],
+                    "do_not_persist": [],
+                    "mandatory": [
+                        "city",
+                        "country",
+                        "line1"
+                    ],
+                    "not_applicable": [],
+                    "immutable": []
+                },
+                "value_sources": {
+                    "client": [],
+                    "system_generated": [],
+                    "committed": [],
+                    "unset_default": []
+                },
+                "status": "IGNORED",
+                "messages": {},
+                "errors": []
+            }
+        ]
+    }
+]
+}

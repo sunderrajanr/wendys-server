@@ -1,0 +1,108 @@
+This document will provide details on how to configure downstream services in order to run this service on your local 
+machine. You may not need to follow these steps if you are just consuming provisionalaccountserv service.
+
+See the below notes for detailed refernece on different scopes, service set up, test data generation, etc.
+
+
+
+Notes On Client Apps and Scopes
+===============================
+
+- provisionalaccountserv needs these scopes:
+
+	CRUD_CREATE_APPLICATION  (so you can call onboarding)
+	IDENTITY_ACTIVITIES      (so you can get a Refresh Token with the correct scopes for getting a point-of-sale QR code)
+	ALLOW_CUSTOMER_CHECKIN
+	PPVirtualToken
+
+- You can find the associated URIs for these scopes in IDS_PROTOCOL_PRIVILEGE table in CLOC
+
+- If on Stage2, you might need to add the scope:
+
+	(There is an integrity constraint, you have to add the foreign key, 
+	 you can see it with this: 
+	
+		SELECT fk_columns.table_name,
+			   fk_columns.column_name,
+			   fk_columns.position,
+			   pk_columns.table_name,
+			   pk_columns.column_name,
+			   pk_columns.position
+		  FROM all_constraints fk_constraint,
+			   all_cons_columns fk_columns,
+			   all_cons_columns pk_columns
+		 WHERE fk_constraint.owner             = 'CONFDBA'
+		   AND fk_constraint.constraint_name   = 'IDS_PROTOCOL_PRIV_PRIV_FK'
+		   AND fk_constraint.owner             = fk_columns.owner
+		   AND fk_constraint.constraint_name   = fk_columns.constraint_name
+		   AND fk_constraint.r_owner           = pk_columns.owner
+		   AND fk_constraint.r_constraint_name = pk_columns.constraint_name
+
+	)
+
+	insert into privilege_con (PRIVILEGE, TIME_CREATED) 
+	values ('CRUD_CREATE_APPLICATION', (SYSDATE - date '1970-01-01')*24*60*60 )
+
+	insert into IDS_PROTOCOL_PRIVILEGE 
+			(IDS_PROTOCOL,PRIVILEGE,PROTOCOL_PRIVILEGE_URI,TIME_CREATED) 
+	values ('OIDConct', 'CRUD_CREATE_APPLICATION',
+			'https://uri.paypal.com/services/customer/onboarding/application',
+			(SYSDATE - date '1970-01-01')*24*60*60 )
+
+- On Sandbox, go to developer.paypal.com and create an account.
+- Login, and go to My Apps, and create a new app.
+- You won't have the above scopes, so then go to Identity team and ask them to add it.  They might ask you to create a
+Jira ticket similar to this one: https://jira.paypal.com/jira/browse/SMT-91.  Owners on the Identity team are
+at this time Aravindan Ranganathan and Madan Ranganath.
+
+- On Stage2, you can go thru the client application creation steps at
+  http://stage2p1108.qa.paypal.com:10080/openid-connect-client/clientregistration.jsp
+- You can follow these steps here to troubleshoot the services involved:
+	https://confluence.paypal.com/cnfl/pages/viewpage.action?pageId=26087203
+	https://confluence.paypal.com/cnfl/display/onboardingplatform/Stage2+OBPS+Testing+using+Platformapiserv
+
+- Use the webapp on your stage https://<stage2>.qa.paypal.com/scopemanagement
+- Go to Application Management, and add the above scopes to your Client ID (your client app just registered in the previous step)
+- You might need to deploy the components:
+
+	https://fusion.paypal.com/deploy/job/IdentityAdminNodeWeb/
+	https://fusion.paypal.com/deploy/job/IdentityAdminWeb/
+
+- You might need to be sure all are started:
+
+	identityadminnodeweb
+	identityadminserv
+	asfdispatchbridgespartaweb
+
+
+Verify the Sandbox or Stage2 API Caller Account Works:
+======================================================
+
+- use the curl script to test calling the PP REST apis with the API credentials you have, on the
+machine you want. You can us the sandbox.paypal.com credentials if you like, they are already
+available in the script.
+
+- be sure you use a new email address and creditcard if testing create_account or add_card. Otherwise
+the onboarding call will will fail, saying those entities already exist.
+
+- To test adding a credit card you'll need to generate a test creditcard number. I use ppuser utility:
+
+	- login to some stage2 machine (eg. stage2ms058.qa.paypal.com)
+	- cd /x/web/STAGE2XXXX/qatools/
+	- csh
+	- source qa.cshrc
+	- cd /x/web/STAGE2XXX/component_test/tools/ppuser
+	- ppuser generate-credit-card-number
+
+	- you'll get:
+		Command: generate-credit-card-number
+		 Result: success
+			Credit Card Type        - Visa
+			Country                 - US
+			Currency                - USD
+			Credit Card Number      - 4032034813331355
+			Credit Card DBase Type  - V
+
+	- use the CC number in the curl script.
+
+
